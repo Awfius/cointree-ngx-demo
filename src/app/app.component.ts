@@ -32,6 +32,9 @@ export class AppComponent implements OnInit {
 
     this.getPrices();
     IntervalObservable.create(30000).subscribe(x => {
+      this.priceViewModel.askPercentClass = "";
+      this.priceViewModel.bidPercentClass = "";
+      this.priceViewModel.spotPercentClass = "";
       this.getPrices();
     });  
 
@@ -46,14 +49,13 @@ export class AppComponent implements OnInit {
       .subscribe(data => {
         currentPrice = data;
         this.priceViewModel.ask = currentPrice.ask;
-        this.priceViewModel.bid = currentPrice.ask;
-        this.priceViewModel.spot = currentPrice.ask;
+        this.priceViewModel.bid = currentPrice.bid;
+        this.priceViewModel.spot = currentPrice.spot;
         this.priceViewModel.askPercent = 0;
         this.priceViewModel.bidPercent = 0;
         this.priceViewModel.spotPercent = 0;
         if (pricesString == null) {
           prices.push(data);
-          this.storageService.set('prices', JSON.stringify(prices));
         }
         else {
           prices = JSON.parse(pricesString);
@@ -66,11 +68,17 @@ export class AppComponent implements OnInit {
           this.priceViewModel.askPercent = this.calulatePercentage(previousPrice.ask, currentPrice.ask);
           this.priceViewModel.bidPercent = this.calulatePercentage(previousPrice.bid, currentPrice.bid);
           this.priceViewModel.spotPercent = this.calulatePercentage(previousPrice.spot, currentPrice.spot);
+
+          this.priceViewModel.askPercentClass = this.priceViewModel.askPercent <= 0 ? "animated fadeInDown" : "animated fadeInUp";
+          this.priceViewModel.bidPercentClass = this.priceViewModel.bidPercent <= 0 ? "animated fadeInDown" : "animated fadeInUp";
+          this.priceViewModel.spotPercentClass = this.priceViewModel.spotPercent <= 0 ? "animated fadeInDown" : "animated fadeInUp";
+          console.log(this.priceViewModel);
         }
+        this.storageService.set('prices', JSON.stringify(prices));
       });
   }
 
   calulatePercentage (previousPrice, currentPrice) {
-    return (100 - ((previousPrice / currentPrice) * 100)).toFixed(2);
+    return (100 - ((previousPrice / currentPrice) * 100));
   }
 }

@@ -14,21 +14,72 @@
     <div class="col-sm-12 offset-md-2 col-md-8">
       <div class="card">
         <div class="card-body">
-          <table>
+          <table class="table">
             <tr>
-              <td>Buy Price</td>
-              <td>${{ priceViewModel.ask }}</td>
-              <td [ngClass]="'negative': priceViewModel.askPercent < 0, 'positive': priceViewModel.askPercent > 0">{{ priceViewModel.askPercent }} %</td>
+              <td class="text-sm-left">Buy Price:</td>
+              <td class="text-sm-right">${{ priceViewModel.ask }}</td>
+              <td class="text-sm-right">
+                <div class="text-primary" *ngIf="priceViewModel.askPercent == 0">
+                  <i class="fas fa-handshake"></i>
+                  {{ priceViewModel.askPercent.toFixed(2) }} %
+                </div>
+                <div class="text-success" *ngIf="priceViewModel.askPercent > 0">
+                  <div [ngClass]="priceViewModel.askPercentClass">
+                    <i class="fas fa-thumbs-up"></i>
+                    {{ priceViewModel.askPercent.toFixed(2) }} %
+                  </div>
+                </div>
+                <div class="text-danger" *ngIf="priceViewModel.askPercent < 0">
+                  <div [ngClass]="priceViewModel.askPercentClass">
+                    <i class="fas fa-thumbs-down"></i>
+                    {{ priceViewModel.askPercent.toFixed(2) }} %
+                  </div>
+                </div>
+              </td>
             </tr>
             <tr>
-              <td>Sell Price</td>
-              <td>${{ priceViewModel.bid }}</td>
-              <td [ngClass]="'negative': priceViewModel.bidPercent < 0, 'positive': priceViewModel.bidPercent > 0">{{ priceViewModel.bidPercent }} %</td>
+              <td class="text-sm-left">Sell Price:</td>
+              <td class="text-sm-right">${{ priceViewModel.bid }}</td>
+              <td class="text-sm-right">
+                <div class="text-primary" *ngIf="priceViewModel.bidPercent == 0">
+                  <i class="fas fa-handshake"></i>
+                  {{ priceViewModel.bidPercent.toFixed(2) }} %
+                </div>
+                <div class="text-success" *ngIf="priceViewModel.bidPercent > 0">
+                  <div [ngClass]="priceViewModel.bidPercentClass">
+                    <i class="fas fa-thumbs-up"></i>
+                    {{ priceViewModel.bidPercent.toFixed(2) }} %
+                  </div>
+                </div>
+                <div class="text-danger" *ngIf="priceViewModel.bidPercent < 0">
+                  <div [ngClass]="priceViewModel.bidPercentClass">
+                      <i class="fas fa-thumbs-down"></i>
+                      {{ priceViewModel.bidPercent.toFixed(2) }} %
+                    </div>
+                  </div>  
+              </td>
             </tr>
             <tr>
-              <td>Spot Price</td>
-              <td>${{ priceViewModel.spot }}</td>
-              <td [ngClass]="'negative': priceViewModel.spotPercent < 0, 'positive': priceViewModel.spotPercent > 0">{{ priceViewModel.spotPercent }} %</td>
+              <td class="text-sm-left">Spot Price:</td>
+              <td class="text-sm-right">${{ priceViewModel.spot }}</td>
+              <td class="text-sm-right">
+                <div class="text-primary" *ngIf="priceViewModel.spotPercent == 0">
+                  <i class="fas fa-handshake"></i>
+                  {{ priceViewModel.spotPercent.toFixed(2) }} %
+                </div>
+                <div class="text-success text-bold" *ngIf="priceViewModel.spotPercent > 0">
+                  <div [ngClass]="priceViewModel.spotPercentClass">
+                    <i class="fas fa-thumbs-up"></i>
+                    {{ priceViewModel.spotPercent.toFixed(2) }} %
+                  </div>
+                </div>
+                <div class="text-danger" *ngIf="priceViewModel.spotPercent < 0">
+                  <div [ngClass]="priceViewModel.spotPercentClass">
+                    <i class="fas fa-thumbs-down"></i>
+                    {{ priceViewModel.spotPercent.toFixed(2) }} %
+                  </div>
+                </div>  
+              </td>
             </tr>
           </table>
         </div>

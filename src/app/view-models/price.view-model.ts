@@ -6,4 +6,8 @@ export class PriceViewModel {
   askPercent: number;
   bidPercent: number;
   spotPercent: number;
+
+  askPercentClass:  string;
+  bidPercentClass:  string;
+  spotPercentClass:  string;
 }
