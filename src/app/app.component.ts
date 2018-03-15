@@ -29,6 +29,12 @@ export class AppComponent implements OnInit {
     private priceService: PriceService) {
 
       this.priceViewModel = new PriceViewModel();
+      this.priceViewModel.ask = 0;
+      this.priceViewModel.bid = 0;
+      this.priceViewModel.spot = 0;
+      this.priceViewModel.askPercent = 0;
+      this.priceViewModel.bidPercent = 0;
+      this.priceViewModel.spotPercent = 0;
   }
 
   ngOnInit() {
@@ -39,7 +45,7 @@ export class AppComponent implements OnInit {
       this.priceViewModel.bidPercentClass = "";
       this.priceViewModel.spotPercentClass = "";
       this.getPrices();
-    });  
+    });
 
   }
 

@@ -1,14 +1,25 @@
 # CointreeNgxDemo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
+This project is created for demo purposes. 
+
+Demo: `https://cointree-ngx-demo.azurewebsites.net/`
+
+Due to the challenge requirement, a short cut was taken to bypas CORS from browser preflight using the following plugin: Allow-Control-Allow-Origin:*
+
+`https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?utm_source=chrome-app-launcher-info-dialog`
+
+## FAQ
+
+For this challenge, the decision was made to create an SPA frontend only project. Local Storage was using to store previous values and used for calculation and references. 
+
+
+## Installation
+
+Upon cloning this repo, run `npm install` to get all dependencies.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
