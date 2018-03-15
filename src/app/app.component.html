@@ -1,21 +1,41 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="app">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
+  <div class="row">
+    <div class="col-sm-12 offset-md-3 col-md-6">
+      <div class="text-center">
+        <img alt="CoinTree Logo" src="../assets/images/HeaderLogo.png">
+      </div>
+      <hr />
+    </div>  
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 offset-md-2 col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <table>
+            <tr>
+              <td>Buy Price</td>
+              <td>${{ priceViewModel.ask }}</td>
+              <td [ngClass]="'negative': priceViewModel.askPercent < 0, 'positive': priceViewModel.askPercent > 0">{{ priceViewModel.askPercent }} %</td>
+            </tr>
+            <tr>
+              <td>Sell Price</td>
+              <td>${{ priceViewModel.bid }}</td>
+              <td [ngClass]="'negative': priceViewModel.bidPercent < 0, 'positive': priceViewModel.bidPercent > 0">{{ priceViewModel.bidPercent }} %</td>
+            </tr>
+            <tr>
+              <td>Spot Price</td>
+              <td>${{ priceViewModel.spot }}</td>
+              <td [ngClass]="'negative': priceViewModel.spotPercent < 0, 'positive': priceViewModel.spotPercent > 0">{{ priceViewModel.spotPercent }} %</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
 <router-outlet></router-outlet>
