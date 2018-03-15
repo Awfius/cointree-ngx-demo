@@ -1,88 +1,98 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="app">
 
-  <div class="row">
-    <div class="col-sm-12 offset-md-3 col-md-6">
-      <div class="text-center">
-        <img alt="CoinTree Logo" src="../assets/images/HeaderLogo.png">
+  <div class="col-sm-12 offset-md-3 col-md-6">
+    <div class="text-center">
+      <img alt="CoinTree Logo" src="../assets/images/HeaderLogo.png">
+    </div>
+    <hr />
+    
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">$</div>
       </div>
-      <hr />
-    </div>  
-  </div>
+      <input type="text" class="form-control" id="askPrice" placeholder="Enter price..." [(ngModel)]="inputPrice">
+    </div>
+    <hr />
+  </div>  
 
-  <div class="row">
-    <div class="col-sm-12 offset-md-2 col-md-8">
-      <div class="card">
-        <div class="card-body">
-          <table class="table">
-            <tr>
-              <td class="text-sm-left">Buy Price:</td>
-              <td class="text-sm-right">${{ priceViewModel.ask }}</td>
-              <td class="text-sm-right">
-                <div class="text-primary" *ngIf="priceViewModel.askPercent == 0">
+  <div class="col-sm-12 offset-md-3 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <td class="text-sm-left">Buy Price:</td>
+            <td class="text-sm-right">${{ priceViewModel.ask }}</td>
+            <td class="text-sm-right">
+              <div class="text-primary" *ngIf="priceViewModel.askPercent == 0">
+                <div [ngClass]="priceViewModel.askPercentClass">
                   <i class="fas fa-handshake"></i>
                   {{ priceViewModel.askPercent.toFixed(2) }} %
                 </div>
-                <div class="text-success" *ngIf="priceViewModel.askPercent > 0">
-                  <div [ngClass]="priceViewModel.askPercentClass">
-                    <i class="fas fa-thumbs-up"></i>
-                    {{ priceViewModel.askPercent.toFixed(2) }} %
-                  </div>
+              </div>  
+              <div class="text-success" *ngIf="priceViewModel.askPercent > 0">
+                <div [ngClass]="priceViewModel.askPercentClass">
+                  <i class="fas fa-thumbs-up"></i>
+                  {{ priceViewModel.askPercent.toFixed(2) }} %
                 </div>
-                <div class="text-danger" *ngIf="priceViewModel.askPercent < 0">
-                  <div [ngClass]="priceViewModel.askPercentClass">
-                    <i class="fas fa-thumbs-down"></i>
-                    {{ priceViewModel.askPercent.toFixed(2) }} %
-                  </div>
+              </div>
+              <div class="text-danger" *ngIf="priceViewModel.askPercent < 0">
+                <div [ngClass]="priceViewModel.askPercentClass">
+                  <i class="fas fa-thumbs-down"></i>
+                  {{ priceViewModel.askPercent.toFixed(2) }} %
                 </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-sm-left">Sell Price:</td>
-              <td class="text-sm-right">${{ priceViewModel.bid }}</td>
-              <td class="text-sm-right">
-                <div class="text-primary" *ngIf="priceViewModel.bidPercent == 0">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-sm-left">Sell Price:</td>
+            <td class="text-sm-right">${{ priceViewModel.bid }}</td>
+            <td class="text-sm-right">
+              <div class="text-primary" *ngIf="priceViewModel.bidPercent == 0">
+                <div [ngClass]="priceViewModel.bidPercentClass">
                   <i class="fas fa-handshake"></i>
                   {{ priceViewModel.bidPercent.toFixed(2) }} %
                 </div>
-                <div class="text-success" *ngIf="priceViewModel.bidPercent > 0">
-                  <div [ngClass]="priceViewModel.bidPercentClass">
-                    <i class="fas fa-thumbs-up"></i>
+              </div>  
+              <div class="text-success" *ngIf="priceViewModel.bidPercent > 0">
+                <div [ngClass]="priceViewModel.bidPercentClass">
+                  <i class="fas fa-thumbs-up"></i>
+                  {{ priceViewModel.bidPercent.toFixed(2) }} %
+                </div>
+              </div>
+              <div class="text-danger" *ngIf="priceViewModel.bidPercent < 0">
+                <div [ngClass]="priceViewModel.bidPercentClass">
+                    <i class="fas fa-thumbs-down"></i>
                     {{ priceViewModel.bidPercent.toFixed(2) }} %
                   </div>
-                </div>
-                <div class="text-danger" *ngIf="priceViewModel.bidPercent < 0">
-                  <div [ngClass]="priceViewModel.bidPercentClass">
-                      <i class="fas fa-thumbs-down"></i>
-                      {{ priceViewModel.bidPercent.toFixed(2) }} %
-                    </div>
-                  </div>  
-              </td>
-            </tr>
-            <tr>
-              <td class="text-sm-left">Spot Price:</td>
-              <td class="text-sm-right">${{ priceViewModel.spot }}</td>
-              <td class="text-sm-right">
-                <div class="text-primary" *ngIf="priceViewModel.spotPercent == 0">
+                </div>  
+            </td>
+          </tr>
+          <tr>
+            <td class="text-sm-left">Spot Price:</td>
+            <td class="text-sm-right">${{ priceViewModel.spot }}</td>
+            <td class="text-sm-right">
+              <div class="text-primary" *ngIf="priceViewModel.spotPercent == 0">
+                <div [ngClass]="priceViewModel.spotPercentClass">
                   <i class="fas fa-handshake"></i>
                   {{ priceViewModel.spotPercent.toFixed(2) }} %
                 </div>
-                <div class="text-success text-bold" *ngIf="priceViewModel.spotPercent > 0">
-                  <div [ngClass]="priceViewModel.spotPercentClass">
-                    <i class="fas fa-thumbs-up"></i>
-                    {{ priceViewModel.spotPercent.toFixed(2) }} %
-                  </div>
+              </div>  
+              <div class="text-success text-bold" *ngIf="priceViewModel.spotPercent > 0">
+                <div [ngClass]="priceViewModel.spotPercentClass">
+                  <i class="fas fa-thumbs-up"></i>
+                  {{ priceViewModel.spotPercent.toFixed(2) }} %
                 </div>
-                <div class="text-danger" *ngIf="priceViewModel.spotPercent < 0">
-                  <div [ngClass]="priceViewModel.spotPercentClass">
-                    <i class="fas fa-thumbs-down"></i>
-                    {{ priceViewModel.spotPercent.toFixed(2) }} %
-                  </div>
-                </div>  
-              </td>
-            </tr>
-          </table>
-        </div>
+              </div>
+              <div class="text-danger" *ngIf="priceViewModel.spotPercent < 0">
+                <div [ngClass]="priceViewModel.spotPercentClass">
+                  <i class="fas fa-thumbs-down"></i>
+                  {{ priceViewModel.spotPercent.toFixed(2) }} %
+                </div>
+              </div>  
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

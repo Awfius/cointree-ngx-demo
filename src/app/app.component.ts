@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 
-import {LocalStorageService} from 'ngx-localstorage';
+import { LocalStorageService } from 'ngx-localstorage';
+import { ToastrService } from 'ngx-toastr';
 
 import { PriceService } from './services/price.service';
 
@@ -18,11 +19,13 @@ import { Price } from './models/price';
 
 export class AppComponent implements OnInit {
 
+  inputPrice: number;
   priceViewModel: PriceViewModel;
   currentPrice: Price;
 
   constructor (
     private storageService: LocalStorageService,
+    private toastrService: ToastrService,
     private priceService: PriceService) {
 
       this.priceViewModel = new PriceViewModel();
@@ -63,16 +66,24 @@ export class AppComponent implements OnInit {
           if (JSON.stringify(previousPrice) !== JSON.stringify(currentPrice)) {
             prices.push(data);
           }
-          console.log(previousPrice);
-          console.log(currentPrice);
+          
           this.priceViewModel.askPercent = this.calulatePercentage(previousPrice.ask, currentPrice.ask);
           this.priceViewModel.bidPercent = this.calulatePercentage(previousPrice.bid, currentPrice.bid);
           this.priceViewModel.spotPercent = this.calulatePercentage(previousPrice.spot, currentPrice.spot);
 
-          this.priceViewModel.askPercentClass = this.priceViewModel.askPercent <= 0 ? "animated fadeInDown" : "animated fadeInUp";
-          this.priceViewModel.bidPercentClass = this.priceViewModel.bidPercent <= 0 ? "animated fadeInDown" : "animated fadeInUp";
-          this.priceViewModel.spotPercentClass = this.priceViewModel.spotPercent <= 0 ? "animated fadeInDown" : "animated fadeInUp";
-          console.log(this.priceViewModel);
+          this.priceViewModel.askPercentClass = this.priceViewModel.askPercent == 0 ? "animated shake" : this.priceViewModel.askPercent > 0 ? "animated fadeInUp" : "animated fadeInDown";
+          this.priceViewModel.bidPercentClass = this.priceViewModel.bidPercent == 0 ? "animated shake" : this.priceViewModel.bidPercent > 0 ? "animated fadeInUp" : "animated fadeInDown";
+          this.priceViewModel.spotPercentClass = this.priceViewModel.spotPercent == 0 ? "animated shake" : this.priceViewModel.spotPercent > 0 ? "animated fadeInUp" : "animated fadeInDown";
+          
+          if (this.priceViewModel.ask > this.inputPrice) {
+            this.toastrService.info('Notification', 'Buying price is higher!');
+          }
+          if (this.priceViewModel.bid > this.inputPrice) {
+            this.toastrService.info('Notification', 'Selling price is higher!');
+          }
+          if (this.priceViewModel.spot > this.inputPrice) {
+            this.toastrService.info('Notification', 'Spot price is higher!');
+          }
         }
         this.storageService.set('prices', JSON.stringify(prices));
       });
